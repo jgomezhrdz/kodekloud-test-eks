@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: staging
+  name: rust-app
+  labels:
+    app: rust-app
+spec:
+  type: LoadBalancer  # Changed to LoadBalancer to get a public IP
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000  # Optional: specifies the container port to forward to
+    protocol: TCP
+  selector:
+    app: rust-app
